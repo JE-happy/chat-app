@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image:url("backImg.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+nav h1 {
+    align-items: center;
+    margin-top: 10px;
+}
+#messages {
+    width: 100%;
+    
+}
+.msgcan {
+    background-color: grey;
+    padding: 8px;
+    margin: 20px 10px;
+    border-radius: 8px;
+}
+.left {
+    float: left;
+    clear: both;
+}
+.right{
+    float:right;
+    clear: both;
+}
+footer {
+    margin-top: 500px;
+}
+#msgInp {
+    width: 60%;
+    height: 30px;
+    border-radius: 10px;
+}
+#sendBtn {
+    height: 30px;
+    border-radius: 10px;
+    padding: 7px;
+    
+}

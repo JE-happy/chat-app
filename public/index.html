@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat APP</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav>
+      <!-- <img src="logo.jpeg" class="logo"> -->
+      <h1>Welcome to couple chat App</h1>
+    </nav>
+    <div id="messages">
+      <!-- <div class="msgcan right"> hey mishu</div>
+      <div class="msgcan left">hey happy</div> -->
+    </div>
+    <br>
+    <footer>
+      <input type="text" id="msgInp" placeholder="Enter Message" />
+      <button id="sendBtn">Send</button>
+    </footer>
+    <!-- <div id="messages"></div> -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const sendBtn = document.getElementById("sendBtn");
+      const messageInput = document.getElementById("msgInp");
+      const allMessages = document.getElementById("messages");
+
+      let f=0;
+
+      let name=prompt("enter your name to join");
+      const append=(message,position) =>{
+        const p = document.createElement("div");
+        p.innerText=message;
+        p.classList.add(position)
+        allMessages.appendChild(p)
+       }
+      socket.on("message", (message) => {
+        // const p = document.createElement("div");
+        // p.innerText=message;
+        // allMessages.appendChild(p);
+        if(f==1){
+          append(`you:${message}`,'right')
+          f=0;
+        }
+        else {
+          append(message,'left')
+        }
+      });
+
+      sendBtn.addEventListener("click", (e) => {
+        const message = messageInput.value;
+        socket.emit("user-message", message);
+        messageInput.value='';
+        f=1;
+      });
+      
+    </script>
+  </body>
+</html>
